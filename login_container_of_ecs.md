@@ -59,3 +59,16 @@ aws ecs execute-command --cluster poc-cluster \
     --region us-east-1 \
     --command "/bin/sh" 
 ```
+
+## run task without service in ecs cluster
+if there is no service in the cluster, we can run task with like the following.
+
+```
+aws ecs run-task \
+    --cluster poc-cluster \
+    --task-definition ecs-fluentbit-firehose \
+    --launch-type FARGATE \
+    --enable-execute-command \
+    --region us-east-1 \
+    --network-configuration '{"awsvpcConfiguration": {"subnets": ["subnet-12345577f"], "assignPublicIp": "ENABLED"}}'
+```
